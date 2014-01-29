@@ -62,6 +62,7 @@ ODS templates work the same way.
            ["developers.Name", "developers.Mail", "developers.LastName"]
            ;; data
            {:project {"Name" "XDocReport"},
+            "developers"
             [{"Name" "ZERR",
               "Mail" "angelo.zerr@gmail.com",
               "LastName" "Angelo"},
