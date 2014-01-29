@@ -1,6 +1,6 @@
-(defproject kaleidocs/merge "0.1.0"
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+(defproject kaleidocs/merge "0.2.0"
+  :description "A Clojure wrapper for XDocReport"
+  :url "https://github.com/Kaleidocs/merge"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies
