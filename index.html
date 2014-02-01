@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Merge by Kaleidocs</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Merge</h1>
+        <p>Merge ODT/ODS templates from Clojure data structure</p>
+        <p class="view"><a href="https://github.com/Kaleidocs/merge">View the Project on GitHub <small>Kaleidocs/merge</small></a></p>
+        <ul>
+          <li><a href="https://github.com/Kaleidocs/merge/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/Kaleidocs/merge/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/Kaleidocs/merge">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a name="kaleidocsmerge" class="anchor" href="#kaleidocsmerge"><span class="octicon octicon-link"></span></a>Kaleidocs/merge</h1>
+
+<p>A Clojure wrapper for <a href="http://code.google.com/p/xdocreport/wiki/ODTReportingQuickStart">XDocReport</a>.
+Works on <a href="http://www.documentfoundation.org/">Open Document Format for Office Applications</a> and <a href="http://velocity.apache.org/">Velocity</a> syntax.</p>
+
+<h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Include Kaleidocs/merge in your <code>project.clj</code>:</p>
+
+<p><a href="https://clojars.org/kaleidocs/merge"><img src="https://clojars.org/kaleidocs/merge/latest-version.svg" alt="Clojars"></a></p>
+
+<div class="highlight highlight-clojure"><pre><span class="p">(</span><span class="nf">require</span> <span class="o">'</span><span class="p">[</span><span class="nv">kaleidocs.merge</span> <span class="ss">:refer</span> <span class="p">[</span><span class="nv">merge-doc</span><span class="p">]])</span>
+</pre></div>
+
+<h2>
+<a name="usage" class="anchor" href="#usage"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a name="simple-structure" class="anchor" href="#simple-structure"><span class="octicon octicon-link"></span></a>Simple structure</h3>
+
+<p>Create ODT/ODS templates with LibreOffice / OpenOffice.
+Templates are just normal office files with some placeholders typed
+directly inside.
+Follow velocity syntax, something like this:</p>
+
+<ul>
+<li>In the file <code>simple-template.odt</code>:</li>
+</ul><pre><code>Hello $name!
+</code></pre>
+
+<p>Now execute from clojure:</p>
+
+<div class="highlight highlight-clojure"><pre><span class="p">(</span><span class="nf">merge-doc</span> <span class="s">"simple-template.odt"</span>
+           <span class="s">"simple-output.odt"</span>
+           <span class="p">{</span><span class="ss">:name</span> <span class="s">"World"</span><span class="p">})</span>
+</pre></div>
+
+<ul>
+<li>the file <code>simple-output.odt</code> should now contain:</li>
+</ul><pre><code>Hello World!
+</code></pre>
+
+<p>ODS templates work the same way.</p>
+
+<h3>
+<a name="documents-with-repeated-rows-in-tables-odt-only" class="anchor" href="#documents-with-repeated-rows-in-tables-odt-only"><span class="octicon octicon-link"></span></a>Documents with repeated rows in tables (ODT only)</h3>
+
+<ul>
+<li>Create a table (you can type placeholders directly without the XDocReport extension for LibreOffice / Open Office)</li>
+</ul><p><img src="http://wiki.xdocreport.googlecode.com/git/screenshots/ODTQuickStart_MacroInsertListFieldInPargraph3.png" alt="Making template"></p>
+
+<ul>
+<li>Let XDocReport do the heavy lifting</li>
+</ul><div class="highlight highlight-clojure"><pre><span class="p">(</span><span class="nf">merge-doc</span> <span class="s">"simple-template.odt"</span>
+           <span class="s">"simple-output.odt"</span>
+           <span class="c1">;; columns</span>
+           <span class="p">[</span><span class="s">"developers.Name"</span>, <span class="s">"developers.Mail"</span>, <span class="s">"developers.LastName"</span><span class="p">]</span>
+           <span class="c1">;; data</span>
+           <span class="p">{</span><span class="ss">:project</span> <span class="p">{</span><span class="s">"Name"</span> <span class="s">"XDocReport"</span><span class="p">}</span>,
+            <span class="s">"developers"</span>
+            <span class="p">[{</span><span class="s">"Name"</span> <span class="s">"ZERR"</span>,
+              <span class="s">"Mail"</span> <span class="s">"angelo.zerr@gmail.com"</span>,
+              <span class="s">"LastName"</span> <span class="s">"Angelo"</span><span class="p">}</span>,
+             <span class="p">{</span><span class="s">"Name"</span> <span class="s">"Leclercq"</span>,
+              <span class="s">"Mail"</span> <span class="s">"pascal.leclercq@gmail.com"</span>,
+              <span class="s">"LastName"</span> <span class="s">"Pascal"</span><span class="p">}]})</span>
+</pre></div>
+
+<p><img src="http://wiki.xdocreport.googlecode.com/git/screenshots/ODTReportingQuickStart_MacroOverview2.png" alt="Result"></p>
+
+<p>More <a href="http://code.google.com/p/xdocreport/wiki/ODTReportingQuickStart">information</a> about creating templates
+(about XDocReport extension for LibreOffice / OpenOffice, too)</p>
+
+<h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>Copyright © 2014 Hoang Minh Thang</p>
+
+<p>Distributed under the Eclipse Public License either version 1.0 or (at
+your option) any later version.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/Kaleidocs">Kaleidocs</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
