@@ -1,8 +1,7 @@
-(ns kaleidocs.merge)
-
-(import fr.opensagres.xdocreport.document.IXDocReport)
-(import fr.opensagres.xdocreport.template.TemplateEngineKind)
-(import fr.opensagres.xdocreport.document.registry.XDocReportRegistry)
+(ns kaleidocs.merge
+  (:import [fr.opensagres.xdocreport.document IXDocReport]
+           [fr.opensagres.xdocreport.template TemplateEngineKind]
+           [fr.opensagres.xdocreport.document.registry XDocReportRegistry]))
 
 (defn list-of-maps->java [coll]
   (java.util.ArrayList.
