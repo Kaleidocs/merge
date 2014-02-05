@@ -36,7 +36,7 @@ Now execute from clojure:
 ```clojure
 (merge-doc "simple-template.odt"
            "simple-output.odt"
-           {:name "World"})
+           {"name" "World"})
 ```
 
 - the file `simple-output.odt` should now contain:
@@ -61,7 +61,7 @@ ODS templates work the same way.
            ;; columns
            ["developers.Name", "developers.Mail", "developers.LastName"]
            ;; data
-           {:project {"Name" "XDocReport"},
+           {"project" {"Name" "XDocReport"},
             "developers"
             [{"Name" "ZERR",
               "Mail" "angelo.zerr@gmail.com",
