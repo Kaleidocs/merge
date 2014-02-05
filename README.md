@@ -11,7 +11,7 @@ Works on [Open Document Format for Office Applications][2] and [Velocity][3] syn
 
 Include Kaleidocs/merge in your `project.clj`:
 
-[![Clojars](https://clojars.org/kaleidocs/merge/latest-version.svg)](https://clojars.org/kaleidocs/merge)
+![Kaleidocs/merge at Clojars](https://clojars.org/kaleidocs/merge/latest-version.svg)
 
 ```clojure
 (require '[kaleidocs.merge :refer [merge-doc]])
