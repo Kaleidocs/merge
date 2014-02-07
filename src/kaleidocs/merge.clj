@@ -1,7 +1,8 @@
 (ns kaleidocs.merge
   (:import [fr.opensagres.xdocreport.document IXDocReport]
            [fr.opensagres.xdocreport.template TemplateEngineKind]
-           [fr.opensagres.xdocreport.document.registry XDocReportRegistry]))
+           [fr.opensagres.xdocreport.document.registry XDocReportRegistry])
+  (:gen-class))
 
 (defn list-of-maps->java [coll]
   (java.util.ArrayList.
@@ -25,3 +26,8 @@
        (. report process context out)))
   ([input-file output-file context-map]
      (merge-doc input-file output-file [] context-map)))
+
+(defn -main [& args]
+  (merge-doc "foo.odt"
+             "foo_out.odt"
+             {"foo" "Fu" "bar" "Bahrr"}))
