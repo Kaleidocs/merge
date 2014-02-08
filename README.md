@@ -91,6 +91,22 @@ More [information][1] about creating templates
 
 [1]: http://code.google.com/p/xdocreport/wiki/ODTReportingQuickStart
 
+## Packaging projects that use kaleidocs/merge
+
+There is an issue with XDocReport framework that template engines can't be
+simply added to :dependencies and run `lein uberjar` to produce a
+standalone executable jar because `java -jar some-project-standalone.jar`
+should yell:
+```bash
+fr.opensagres.xdocreport.core.XDocReportException: Null template engine. Set template engine with IXDocReport#setTemplateEngine.
+```
+
+You must download those engines' jars, keep them beside your standalone jar
+and run this command instead:
+```bash
+java -classpath "some-project-standalone.jar:fr.opensagres.xdocreport.document.odt-1.0.3.jar:fr.opensagres.xdocreport.document.ods-1.0.3.jar" your.main.namespace
+```
+
 ## License
 
 Copyright © 2014 Hoang Minh Thang
