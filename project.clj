@@ -1,4 +1,4 @@
-(defproject kaleidocs/merge "0.2.0"
+(defproject kaleidocs/merge "0.3.0"
   :description "A Clojure wrapper for XDocReport"
   :url "https://github.com/Kaleidocs/merge"
   :license {:name "Eclipse Public License"
