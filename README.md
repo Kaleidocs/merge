@@ -101,7 +101,15 @@ should yell:
 fr.opensagres.xdocreport.core.XDocReportException: Null template engine. Set template engine with IXDocReport#setTemplateEngine.
 ```
 
-You must download those engines' jars, keep them beside your standalone jar
+The easy way to add these template engines to classpath is to copy them
+beside the standalone jar. Something like this:
+
+```bash
+# copy from local maven repository to current directory:
+cp ~/.m2/repository/fr/opensagres/xdocreport/fr.opensagres.xdocreport.document.odt/1.0.3/fr.opensagres.xdocreport.document.odt-1.0.3.jar .
+cp ~/.m2/repository/fr/opensagres/xdocreport/fr.opensagres.xdocreport.document.ods/1.0.3/fr.opensagres.xdocreport.document.ods-1.0.3.jar .
+```
+
 and run this command instead:
 ```bash
 java -classpath "some-project-standalone.jar:fr.opensagres.xdocreport.document.odt-1.0.3.jar:fr.opensagres.xdocreport.document.ods-1.0.3.jar" your.main.namespace
