@@ -13,6 +13,20 @@ Include Kaleidocs/merge in your `project.clj`:
 
 ![Kaleidocs/merge at Clojars](https://clojars.org/kaleidocs/merge/latest-version.svg)
 
+then also in your `project.clj`, add templates engine(s) to dev dependencies:
+
+```clojure
+:profiles
+{:dev
+   {:dependencies
+    [[fr.opensagres.xdocreport/fr.opensagres.xdocreport.document.odt "1.0.3"]
+     [fr.opensagres.xdocreport/fr.opensagres.xdocreport.document.ods "1.0.3"]]}}
+```
+(You should not add these templates engines to your dependencies.
+See Packaging section for details.)
+
+In your namespace:
+
 ```clojure
 (require '[kaleidocs.merge :refer [merge-doc]])
 ```
