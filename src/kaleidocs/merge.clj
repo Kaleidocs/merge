@@ -1,7 +1,8 @@
 (ns kaleidocs.merge
   (:import [fr.opensagres.xdocreport.document IXDocReport]
            [fr.opensagres.xdocreport.template TemplateEngineKind]
-           [fr.opensagres.xdocreport.document.registry XDocReportRegistry]))
+           [fr.opensagres.xdocreport.document.registry XDocReportRegistry]
+           [freemarker.template TemplateMethodModelEx]))
 
 (defn list-of-maps->java [coll]
   (java.util.ArrayList.
@@ -12,7 +13,7 @@
   ([input-file output-file columns context-map]
      (let [in (clojure.java.io/input-stream input-file)
            out (clojure.java.io/output-stream output-file)
-           report (. (XDocReportRegistry/getRegistry) loadReport in TemplateEngineKind/Velocity)
+           report (. (XDocReportRegistry/getRegistry) loadReport in TemplateEngineKind/Freemarker)
            fields-metadata (.createFieldsMetadata report)
            context (. report createContext)]
        (doseq [col columns]
