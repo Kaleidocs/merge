@@ -1,11 +1,11 @@
-# Kaleidocs/merge
+# Kaleidocs/meld
 
 A Clojure wrapper for [XDocReport][1].
-Works on [Open Document Format for Office Applications][2] and [Velocity][3] syntax.
+Works on [Open Document Format for Office Applications][2] and [Freemarker][3] syntax.
 
 [1]: http://code.google.com/p/xdocreport/
 [2]: http://www.documentfoundation.org/
-[3]: http://velocity.apache.org/
+[3]: http://freemarker.org/
 
 ## Installation
 
@@ -37,12 +37,12 @@ In your namespace:
 Create ODT/ODS templates with LibreOffice / OpenOffice.
 Templates are just normal office files with some placeholders typed
 directly inside.
-Follow velocity syntax, something like this:
+Follow freemarker syntax, something like this:
 
 - In the file `simple-template.odt`:
 
 ```
-Hello $name!
+Hello ${name}!
 ```
 
 Now execute from clojure:
